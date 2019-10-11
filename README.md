@@ -1,12 +1,16 @@
 # wikiextractor2sqlite
 
-This script creates a sqlite db from wikiextractor's jsonfile.
+This script creates a wikipedia db in SQLite from wikiextractor's jsonfile.
 
+Many thanks!<br />
 [wikiextractor](https://github.com/attardi/wikiextractor)
 
 # Install
+
+```
 git clone https://github.com/yuukimiyo/wikiextractor2sqlite.git
 pip install tqdm
+```
 
 # Usage
 
