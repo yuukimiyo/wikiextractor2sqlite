@@ -1,5 +1,6 @@
-# -*- coding:utf-8 -*-
-""" This script creates a wikipedia db in SQLite from wikiextractor's jsonfile. 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+""" Creates a wikipedia db in SQLite from wikiextractor's jsonfile. 
 """
 
 import sys
