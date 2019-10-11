@@ -11,11 +11,24 @@ pip install tqdm
 # Usage
 
 ```
-python wikiextractor2sqlite.py <extracted dir by wikiextractor> [-o <name of sqlite db>] [-d]
-```
+python wikiextractor2sqlite.py <extracted dir> [-o <name of sqlite db>] [-d] [-h]
 
-- -o: name of sqlite db.(default: wikipedia.db)
-- -d: drop table in sqlite.(default: True)
+extracted dir:
+    extracted dir by wikiextractor.
+	required
+
+[-o | --output]:
+    name of sqlite db.
+    default: wikipedia.db
+
+[-d | --drop]:
+    drop table if exists in sqlite db.
+    default: True
+
+e.g.
+python wikiextractor2sqlite/wikiextractor2sqlite.py ./extracted -o wikipedia.db
+
+```
 
 # License
 
