@@ -22,7 +22,7 @@ LOG_LEVEL = logging.INFO
 
 # Defines
 DB_NAME = './wikipedia.db'
-TABLE_NAME = 'pages'
+TABLE_NAME = 'extracted_page'
 
 # SQL
 CREATE_PAGES_TBL = '''
@@ -50,7 +50,7 @@ INSERT INTO `{}` (
 
 
 def json_to_sqlite(log, input_dir, dbname):
-    """ insert pages data to sqlite.
+    """ insert page data to sqlite.
     """
 
     with closing(sqlite3.connect(dbname)) as conn:
