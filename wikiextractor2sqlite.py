@@ -15,10 +15,8 @@ from tqdm import tqdm
 from contextlib import closing
 
 # Define Log settings
-# LOG_LINE_FM = '%(asctime)s(%(levelname)s) %(name)s: %(message)s'
-LOG_LINE_FM = '%(asctime)s(%(levelname)s): %(message)s'
+LOG_LINE_FM = '%(asctime)s(%(levelname)s) %(name)s: %(message)s'
 LOG_DATE_FM = '%H:%M:%S'
-LOG_LEVEL = logging.INFO
 
 # Defines
 DB_NAME = './wikipedia.db'
@@ -49,9 +47,10 @@ INSERT INTO `{}` (
 '''.format(TABLE_NAME)
 
 
-def json_to_sqlite(log, input_dir, dbname):
+def json_to_sqlite(input_dir, dbname):
     """ insert page data to sqlite.
     """
+    log = logging.getLogger(sys._getframe().f_code.co_name)
 
     with closing(sqlite3.connect(dbname)) as conn:
         c = conn.cursor()
@@ -77,9 +76,11 @@ def json_to_sqlite(log, input_dir, dbname):
 
         log.info("insert {} records! / {} error..".format(count, count_error))
 
-def drop_table_if_exists(log, dbname):
+def drop_table_if_exists(dbname):
     """ Drop table.
     """
+    log = logging.getLogger(sys._getframe().f_code.co_name)
+
     with closing(sqlite3.connect(dbname)) as conn:
         c = conn.cursor()
 
@@ -87,9 +88,11 @@ def drop_table_if_exists(log, dbname):
         log.info(result.fetchall())
 
 
-def check_table(log, dbname, n=1):
+def check_table(dbname, n=1):
     """ show n records to check.
     """
+    log = logging.getLogger(sys._getframe().f_code.co_name)
+
     with closing(sqlite3.connect(dbname)) as conn:
         c = conn.cursor()
 
@@ -112,9 +115,13 @@ if __name__ == '__main__':
 
     # Setup Logger
     if not args.quiet:
-        logging.basicConfig(level=LOG_LEVEL, format=LOG_LINE_FM, datefmt=LOG_DATE_FM)
+        logging.basicConfig(level=logging.INFO, format=LOG_LINE_FM, datefmt=LOG_DATE_FM)
     else:
         logging.basicConfig(level=logging.ERROR, format=LOG_LINE_FM, datefmt=LOG_DATE_FM)
+
+    #
+    # Main
+    #
     log = logging.getLogger(__name__)
 
     # Exit if input dir not fount.
@@ -124,7 +131,9 @@ if __name__ == '__main__':
 
     # Drop table if exists.
     if args.drop:
-        drop_table_if_exists(log, args.output);
+        drop_table_if_exists(args.output)
 
     # exec insert
-    json_to_sqlite(log, args.input_dir, args.output)
+    json_to_sqlite(args.input_dir, args.output)
+
+    log.info("end")
