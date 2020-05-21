@@ -1,6 +1,6 @@
 # wikiextractor2sqlite
 
-This script creates a wikipedia db in SQLite from wikiextractor's jsonfile.
+Make SQLite DB from wikiextractor's jsonfile.
 
 Many thanks!<br />
 [wikiextractor](https://github.com/attardi/wikiextractor)
