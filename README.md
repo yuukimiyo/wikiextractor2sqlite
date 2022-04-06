@@ -64,7 +64,7 @@ python ./wikiextractor2sqlite/wikiextractor2sqlite.py ./extracted -o wikipedia.d
 
 # Check db data
 (install sqlite3 if not installed. e.g.> apt install sqlite3)
-sqlite3 wikipedia.db "select count(*) from pages;"
+sqlite3 wikipedia.db "select count(*) from extracted_page;"
 
 ```
 
